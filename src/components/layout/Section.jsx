@@ -7,7 +7,7 @@ export default function Section({ children, className = '', id, animate = true }
 
   if (!animate || shouldReduceMotion) {
     return (
-      <section id={id} className={`py-24 sm:py-32 md:py-40 lg:py-48 ${className}`}>
+      <section id={id} className={`py-16 sm:py-24 md:py-32 lg:py-48 ${className}`}>
         {children}
       </section>
     );
@@ -16,11 +16,11 @@ export default function Section({ children, className = '', id, animate = true }
   return (
     <motion.section
       id={id}
-      className={`py-24 sm:py-32 md:py-40 lg:py-48 ${className}`}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
-      transition={transitionDefaults}
+      className={`py-16 sm:py-24 md:py-32 lg:py-48 ${className}`}
+      initial={{ y: 20, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true, amount: 0.05 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
     </motion.section>

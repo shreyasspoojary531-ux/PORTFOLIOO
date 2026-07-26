@@ -13,7 +13,26 @@ import Contact from './components/sections/Contact';
 export default function App() {
   return (
     <SmoothScroll>
-      <div className="bg-white text-black min-h-screen selection:bg-black selection:text-white relative">
+      <div className="bg-white/80 text-black min-h-screen selection:bg-black selection:text-white relative">
+        {/* Repeating particle mesh background — 80% opacity, tiles as page grows */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundImage: 'url(/assets/bg-particle-mesh.jpg)',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: 0.4,
+            zIndex: 1,
+            pointerEvents: 'none',
+          }}
+        />
+
         {/* 1.4s Cinematic Intro Reveal */}
         <LoadingScreen />
 
@@ -21,7 +40,7 @@ export default function App() {
         <Navbar />
 
         {/* Main Content Sections */}
-        <main className="relative z-0">
+        <main className="relative z-[2]">
           <Hero />
           <About />
           <Projects />

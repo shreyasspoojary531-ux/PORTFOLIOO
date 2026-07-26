@@ -16,14 +16,14 @@ export default function Contact() {
   };
 
   return (
-    <Section id="contact" className="bg-white text-black border-t border-black/10">
+    <Section id="contact" className="bg-white/80 text-black border-t border-black/10">
       <Container>
         <span className="text-xs uppercase tracking-[0.25em] font-mono-tech text-black/50 block mb-6">
           06 / Initiate Conversation
         </span>
 
-        <div className="mb-16 max-w-4xl pb-4">
-          <h2 className="font-display text-5xl sm:text-7xl lg:text-8xl tracking-tight leading-[1.05]">
+        <div className="mb-10 sm:mb-16 max-w-4xl pb-4">
+          <h2 className="font-display text-4xl sm:text-7xl lg:text-8xl tracking-tight leading-[1.05]">
             {CONTACT.headline}
           </h2>
         </div>
@@ -32,7 +32,7 @@ export default function Contact() {
           <div className="inline-block relative">
             <button
               onClick={handleCopyEmail}
-              className="text-left font-mono-tech text-2xl sm:text-4xl lg:text-5xl text-black hover:opacity-50 border-b-2 border-black pb-2 transition-opacity focus:outline-none cursor-pointer"
+              className="text-left font-mono-tech text-xl sm:text-4xl lg:text-5xl text-black hover:opacity-50 border-b-2 border-black pb-2 transition-opacity focus:outline-none cursor-pointer"
             >
               {CONTACT.email}
             </button>

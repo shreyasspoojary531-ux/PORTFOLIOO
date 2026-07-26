@@ -17,11 +17,11 @@ function ScrollHighlightedParagraph({ text }) {
   });
 
   if (shouldReduceMotion) {
-    return <p className="text-black/80 font-light text-lg sm:text-xl leading-relaxed">{text}</p>;
+    return <p className="text-black/80 font-light text-base sm:text-xl leading-relaxed">{text}</p>;
   }
 
   return (
-    <p ref={containerRef} className="font-light text-lg sm:text-xl leading-relaxed flex flex-wrap gap-x-[0.25em]">
+    <p ref={containerRef} className="font-light text-base sm:text-xl leading-relaxed flex flex-wrap gap-x-[0.25em]">
       {words.map((word, i) => {
         const start = i / words.length;
         const end = start + 1 / words.length;
@@ -40,16 +40,16 @@ function ScrollHighlightedParagraph({ text }) {
 
 export default function About() {
   return (
-    <Section id="about" className="bg-white text-black">
+    <Section id="about" className="bg-white/80 text-black" animate={false}>
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column — Eyebrow Label */}
           <div className="lg:col-span-4 lg:sticky lg:top-32">
             <FadeIn>
-              <span className="text-xs uppercase tracking-[0.25em] font-mono-tech text-black/50 block mb-4">
+              <span className="text-[10px] sm:text-xs uppercase tracking-[0.25em] font-mono-tech text-black/50 block mb-3 sm:mb-4">
                 01 / Philosophy & Mindset
               </span>
-              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-none mb-6">
+              <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] mb-5 sm:mb-6">
                 Architectural thinking applied to product craft.
               </h2>
               <div className="w-12 h-[1px] bg-black/20" />
@@ -60,7 +60,7 @@ export default function About() {
           <div className="lg:col-span-8 space-y-16">
             {/* Editorial Pull Quote */}
             <FadeIn delay={0.1}>
-              <blockquote className="font-editorial-italic text-3xl sm:text-4xl lg:text-5xl text-black leading-snug border-l-2 border-black pl-6 sm:pl-8 py-2 hover:pl-10 transition-all duration-300">
+              <blockquote className="font-editorial-italic text-2xl sm:text-4xl lg:text-5xl text-black leading-snug border-l-2 border-black pl-4 sm:pl-8 py-2 hover:pl-10 transition-all duration-300">
                 "{ABOUT.headline}"
               </blockquote>
             </FadeIn>

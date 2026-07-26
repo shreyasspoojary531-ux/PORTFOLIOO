@@ -15,7 +15,7 @@ export default function Expertise() {
   const activeNode = EXPERTISE_NODES.find((n) => n.id === activeNodeId);
 
   return (
-    <Section id="expertise" className="bg-white text-black border-t border-black/10 overflow-hidden">
+    <Section id="expertise" className="bg-white/80 text-black border-t border-black/10 overflow-hidden">
       <Container>
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 pb-8 border-b border-black/10 gap-6">
           <div>

@@ -19,10 +19,10 @@ export default function Projects() {
   }, [selectedProject]);
 
   return (
-    <Section id="projects" className="bg-white text-black">
+    <Section id="projects" className="bg-white/80 text-black">
       <Container>
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 sm:mb-24 pb-8 border-b border-black/10 gap-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-24 pb-6 sm:pb-8 border-b border-black/10 gap-4 sm:gap-6">
           <div>
             <span className="text-xs uppercase tracking-[0.25em] font-mono-tech text-black/50 block mb-3">
               02 / Selected Works
