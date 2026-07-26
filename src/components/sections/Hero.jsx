@@ -10,14 +10,9 @@ export default function Hero() {
   return (
     <section className="relative min-h-[100dvh] flex flex-col bg-white/80 text-black overflow-hidden select-none">
 
-      {/* ── MOBILE LAYOUT: content pinned to bottom ── */}
-      <div className="flex flex-col flex-1 md:hidden">
-        {/* Spacer pushes content down */}
-        <div className="flex-1" />
-
-        {/* Bottom content block */}
-        <div className="px-5 pb-6 space-y-5">
-          {/* Eyebrow */}
+      {/* ── MOBILE LAYOUT: content balanced vertically ── */}
+      <div className="flex flex-col flex-1 justify-end pt-20 pb-16 px-5 space-y-6 md:hidden">
+        {/* Eyebrow */}
           <motion.div
             className="flex items-center gap-2.5 overflow-visible"
             initial={shouldReduceMotion ? false : { y: 16, opacity: 0 }}
@@ -74,7 +69,6 @@ export default function Hero() {
               <span className="text-black font-bold">↓</span>
             </div>
           </motion.div>
-        </div>
       </div>
 
       {/* ── DESKTOP LAYOUT: original centered layout ── */}
