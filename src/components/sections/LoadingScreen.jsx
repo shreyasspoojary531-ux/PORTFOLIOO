@@ -4,11 +4,16 @@ import { ease } from '../../lib/animations';
 import { SITE } from '../../lib/constants';
 
 export default function LoadingScreen({ onComplete }) {
-  const [visible, setVisible] = useState(true);
   const shouldReduceMotion = useReducedMotion();
+  const [visible, setVisible] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return !sessionStorage.getItem('hasSeenIntro');
+    }
+    return true;
+  });
 
   useEffect(() => {
-    if (shouldReduceMotion) {
+    if (shouldReduceMotion || (typeof window !== 'undefined' && sessionStorage.getItem('hasSeenIntro'))) {
       setVisible(false);
       onComplete?.();
       return;
@@ -17,6 +22,9 @@ export default function LoadingScreen({ onComplete }) {
     // Auto-dismiss after 1.4 seconds total for snappy cinematic feel
     const timer = setTimeout(() => {
       setVisible(false);
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('hasSeenIntro', 'true');
+      }
       onComplete?.();
     }, 1400);
 
@@ -29,7 +37,7 @@ export default function LoadingScreen({ onComplete }) {
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="fixed inset-0 z-[100] bg-black text-white flex flex-col justify-between p-8 sm:p-12 md:p-16 overflow-hidden select-none pointer-events-none"
+          className="fixed inset-0 z-[100] bg-black text-white flex flex-col justify-between p-8 sm:p-12 md:p-16 overflow-hidden select-none pointer-events-auto"
           initial={{ y: 0 }}
           exit={{ y: '-100%' }}
           transition={{ duration: 0.8, ease }}

@@ -60,7 +60,7 @@ export default function About() {
           <div className="lg:col-span-8 space-y-16">
             {/* Editorial Pull Quote */}
             <FadeIn delay={0.1}>
-              <blockquote className="font-editorial-italic text-2xl sm:text-4xl lg:text-5xl text-black leading-snug border-l-2 border-black pl-4 sm:pl-8 py-2 hover:pl-10 transition-all duration-300">
+              <blockquote className="font-editorial-italic text-2xl sm:text-4xl lg:text-5xl text-black leading-snug border-l-2 border-black pl-4 sm:pl-8 py-2 md:hover:pl-10 transition-all duration-300">
                 "{ABOUT.headline}"
               </blockquote>
             </FadeIn>
@@ -77,8 +77,8 @@ export default function About() {
             {/* Core Principles Cards */}
             <div className="pt-12 grid grid-cols-1 sm:grid-cols-3 gap-8 border-t border-black/10">
               <FadeIn delay={0.3}>
-                <div className="p-6 border border-black/10 hover:border-black transition-colors duration-300 space-y-3 group">
-                  <span className="font-mono-tech text-xs uppercase tracking-wider text-black/40 block group-hover:text-black">
+                <div className="p-6 border border-black/10 md:hover:border-black transition-colors duration-300 space-y-3 group">
+                  <span className="font-mono-tech text-xs uppercase tracking-wider text-black/40 block md:group-hover:text-black">
                     01. Reduction
                   </span>
                   <p className="text-sm text-black/70 font-light leading-relaxed">
@@ -88,8 +88,8 @@ export default function About() {
               </FadeIn>
 
               <FadeIn delay={0.4}>
-                <div className="p-6 border border-black/10 hover:border-black transition-colors duration-300 space-y-3 group">
-                  <span className="font-mono-tech text-xs uppercase tracking-wider text-black/40 block group-hover:text-black">
+                <div className="p-6 border border-black/10 md:hover:border-black transition-colors duration-300 space-y-3 group">
+                  <span className="font-mono-tech text-xs uppercase tracking-wider text-black/40 block md:group-hover:text-black">
                     02. Cohesion
                   </span>
                   <p className="text-sm text-black/70 font-light leading-relaxed">
@@ -99,8 +99,8 @@ export default function About() {
               </FadeIn>
 
               <FadeIn delay={0.5}>
-                <div className="p-6 border border-black/10 hover:border-black transition-colors duration-300 space-y-3 group">
-                  <span className="font-mono-tech text-xs uppercase tracking-wider text-black/40 block group-hover:text-black">
+                <div className="p-6 border border-black/10 md:hover:border-black transition-colors duration-300 space-y-3 group">
+                  <span className="font-mono-tech text-xs uppercase tracking-wider text-black/40 block md:group-hover:text-black">
                     03. Precision
                   </span>
                   <p className="text-sm text-black/70 font-light leading-relaxed">

@@ -5,7 +5,6 @@ import Navbar from './components/layout/Navbar';
 import Hero from './components/sections/Hero';
 import About from './components/sections/About';
 import Projects from './components/sections/Projects';
-import GitHub from './components/sections/GitHub';
 import Expertise from './components/sections/Expertise';
 import LifeInFrames from './components/sections/LifeInFrames';
 import Contact from './components/sections/Contact';
@@ -44,7 +43,6 @@ export default function App() {
           <Hero />
           <About />
           <Projects />
-          <GitHub />
           <Expertise />
           <LifeInFrames />
           <Contact />

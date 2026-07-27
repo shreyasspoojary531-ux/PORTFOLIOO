@@ -6,7 +6,6 @@ import { SITE } from '../../lib/constants';
 const navLinks = [
   { label: 'About', href: '#about' },
   { label: 'Projects', href: '#projects' },
-  { label: 'GitHub', href: '#github' },
   { label: 'Expertise', href: '#expertise' },
   { label: 'Life', href: '#frames' },
   { label: 'Contact', href: '#contact' },
@@ -89,15 +88,15 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             <a
               href="#"
-              className="font-display text-xl sm:text-2xl tracking-tight text-black hover:opacity-60 transition-opacity"
+              className="font-display text-xl sm:text-2xl tracking-tight text-black md:hover:opacity-60 transition-opacity"
             >
               {SITE.name}
             </a>
 
             <div className="hidden lg:flex items-center gap-2 px-3 py-1 bg-black/5 border border-black/10 rounded-full text-[10px] font-mono-tech uppercase tracking-wider text-black/60">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-40" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-black" />
               </span>
               <span>Available for Select Commissions</span>
             </div>
@@ -114,13 +113,13 @@ export default function Navbar() {
                     href={link.href}
                     onClick={(e) => handleLinkClick(e, link.href)}
                     className={`text-xs uppercase tracking-widest transition-colors py-2 relative group ${
-                      isActive ? 'text-black font-semibold' : 'text-black/50 hover:text-black'
+                      isActive ? 'text-black font-semibold' : 'text-black/50 md:hover:text-black'
                     }`}
                   >
                     {link.label}
                     <span
                       className={`absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left ${
-                        isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                        isActive ? 'scale-x-100' : 'scale-x-0 md:group-hover:scale-x-100'
                       }`}
                     />
                   </a>
@@ -175,7 +174,7 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
-                  className="font-display text-4xl sm:text-5xl text-black hover:italic transition-all"
+                  className="font-display text-4xl sm:text-5xl text-black md:hover:italic transition-all"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.4, delay: idx * 0.05 + 0.2, ease }}

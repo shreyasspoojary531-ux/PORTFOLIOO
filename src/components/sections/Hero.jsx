@@ -58,9 +58,9 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.5 }}
           >
             <div className="flex items-center gap-3 flex-wrap font-mono-tech text-[10px] uppercase tracking-widest text-black/40">
-              <span>54 Repos</span>
+              <span>3 Repositories</span>
               <span>·</span>
-              <span>3.1k Contributions</span>
+              <span>AI & Vibe Coding</span>
               <span>·</span>
               <span>100% Craft</span>
             </div>
@@ -123,9 +123,9 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             <div className="flex items-center gap-6 flex-wrap">
-              <span>54 Repositories</span>
+              <span>3 Public Repositories</span>
               <span>·</span>
-              <span>3.1k Contributions</span>
+              <span>AI & Vibe Coding</span>
               <span>·</span>
               <span>100% Craft</span>
             </div>

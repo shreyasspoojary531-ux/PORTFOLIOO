@@ -87,28 +87,28 @@ export default function LifeInFrames() {
 
             return (
               <FadeIn key={item.id} delay={idx * 0.06} className={gridSpanClass}>
-                <div className="relative w-full h-full overflow-hidden border border-black/10 group cursor-pointer bg-black/5 flex flex-col justify-between p-6 transition-all duration-500 hover:border-black/60">
+                <div className="relative w-full h-full overflow-hidden border border-black/10 group cursor-pointer bg-black/5 flex flex-col justify-between p-6 transition-all duration-500 md:hover:border-black/60">
                   <div
-                    className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="absolute inset-0 transition-transform duration-700 ease-out md:group-hover:scale-105"
                     style={{
                       backgroundImage: `radial-gradient(circle at ${(item.id * 30) % 100}% ${(item.id * 45) % 100}%, rgba(0,0,0,0.12) 1px, transparent 1px)`,
                       backgroundSize: `${16 + (item.id % 3) * 8}px ${16 + (item.id % 3) * 8}px`,
                     }}
                   >
-                    <div className={`w-full h-full transition-all duration-500 group-hover:grayscale ${item.id % 2 === 0 ? 'bg-black/[0.03]' : 'bg-black/[0.06]'}`} />
+                    <div className={`w-full h-full transition-all duration-500 md:group-hover:grayscale ${item.id % 2 === 0 ? 'bg-black/[0.03]' : 'bg-black/[0.06]'}`} />
                   </div>
 
                   <div className="relative z-10 font-mono-tech text-[10px] uppercase tracking-widest text-black/40">
                     FRAME // 0{item.id}
                   </div>
 
-                  <div className="absolute inset-x-0 bottom-0 h-4/5 bg-gradient-to-t from-white via-white/80 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500 ease-out pointer-events-none" />
+                  <div className="absolute inset-x-0 bottom-0 h-4/5 bg-gradient-to-t from-white via-white/80 to-transparent opacity-90 md:group-hover:opacity-100 transition-opacity duration-500 ease-out pointer-events-none" />
 
                   <div className="relative z-20 mt-auto pt-4 transform transition-all duration-500 ease-out">
-                    <h3 className="font-display text-2xl sm:text-3xl text-black mb-1 group-hover:underline underline-offset-4 decoration-1">
+                    <h3 className="font-display text-2xl sm:text-3xl text-black mb-1 md:group-hover:underline underline-offset-4 decoration-1">
                       {item.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-black/75 font-light leading-relaxed max-w-md opacity-80 group-hover:opacity-100 transition-opacity">
+                    <p className="text-xs sm:text-sm text-black/75 font-light leading-relaxed max-w-md opacity-80 md:group-hover:opacity-100 transition-opacity">
                       {item.caption}
                     </p>
                   </div>

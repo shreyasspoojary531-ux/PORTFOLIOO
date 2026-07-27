@@ -32,7 +32,7 @@ export default function Contact() {
           <div className="inline-block relative">
             <button
               onClick={handleCopyEmail}
-              className="text-left font-mono-tech text-xl sm:text-4xl lg:text-5xl text-black hover:opacity-50 border-b-2 border-black pb-2 transition-opacity focus:outline-none cursor-pointer"
+              className="text-left font-mono-tech text-xl sm:text-4xl lg:text-5xl text-black md:hover:opacity-50 border-b-2 border-black pb-2 transition-opacity focus:outline-none cursor-pointer"
             >
               {CONTACT.email}
             </button>
@@ -56,7 +56,7 @@ export default function Contact() {
                 href={link.url}
                 target={link.url.startsWith('http') ? '_blank' : '_self'}
                 rel="noopener noreferrer"
-                className="font-mono-tech text-xs uppercase tracking-widest text-black/60 hover:text-black hover:underline underline-offset-4 transition-all"
+                className="font-mono-tech text-xs uppercase tracking-widest text-black/60 md:hover:text-black md:hover:underline underline-offset-4 transition-all"
               >
                 {link.label} ↗
               </a>
