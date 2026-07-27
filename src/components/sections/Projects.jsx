@@ -4,6 +4,7 @@ import Container from '../layout/Container';
 import Section from '../layout/Section';
 import FadeIn from '../animations/FadeIn';
 import LineReveal from '../animations/LineReveal';
+import ShinyText from '../ui/ShinyText';
 
 export default function Projects() {
   return (
@@ -16,7 +17,7 @@ export default function Projects() {
               02 / Selected Works
             </span>
             <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-tight">
-              Featured Systems & Products
+              <ShinyText text="Featured Systems & Products" speed={2} delay={3} color="#000000" shineColor="#9a9a9a" spread={55} direction="left" yoyo={false} pauseOnHover={false} disabled={false} />
             </h2>
           </div>
           <p className="text-xs font-mono-tech uppercase tracking-widest text-black/40">
@@ -259,7 +260,7 @@ export default function Projects() {
               Open Source Architecture & Repositories
             </span>
             <h3 className="font-display text-3xl sm:text-5xl text-black tracking-tight max-w-2xl leading-tight">
-              Explore More Repositories & Experimental Systems
+              <ShinyText text="Explore More Repositories & Experimental Systems" speed={2} delay={3} color="#000000" shineColor="#9a9a9a" spread={55} direction="left" yoyo={false} pauseOnHover={false} disabled={false} />
             </h3>
             <a
               href="https://github.com/shreyasspoojary531-ux"

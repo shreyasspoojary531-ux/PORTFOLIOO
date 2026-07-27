@@ -4,6 +4,7 @@ import Container from '../layout/Container';
 import Section from '../layout/Section';
 import FadeIn from '../animations/FadeIn';
 import LineReveal from '../animations/LineReveal';
+import ShinyText from '../ui/ShinyText';
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
@@ -24,7 +25,7 @@ export default function Contact() {
 
         <div className="mb-10 sm:mb-16 max-w-4xl pb-4">
           <h2 className="font-display text-4xl sm:text-7xl lg:text-8xl tracking-tight leading-[1.05]">
-            {CONTACT.headline}
+            <ShinyText text={CONTACT.headline} speed={2} delay={3} color="#000000" shineColor="#9a9a9a" spread={55} direction="left" yoyo={false} pauseOnHover={false} disabled={false} />
           </h2>
         </div>
 

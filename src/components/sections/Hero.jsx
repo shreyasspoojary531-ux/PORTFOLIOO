@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from 'motion/react';
 import { ease } from '../../lib/animations';
 import { SITE } from '../../lib/constants';
 import Container from '../layout/Container';
+import ShinyText from '../ui/ShinyText';
 
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
@@ -36,7 +37,7 @@ export default function Hero() {
               animate={{ y: '0%' }}
               transition={{ duration: 1.0, ease, delay: 0.18 }}
             >
-              {SITE.name}
+              <ShinyText text={SITE.name} speed={2} delay={3} color="#000000" shineColor="#9a9a9a" spread={55} direction="left" yoyo={false} pauseOnHover={false} disabled={false} />
             </motion.h1>
           </div>
 
@@ -98,7 +99,7 @@ export default function Hero() {
                 animate={{ y: '0%', opacity: 1 }}
                 transition={{ duration: 1.0, ease, delay: 0.2 }}
               >
-                {SITE.name}
+                <ShinyText text={SITE.name} speed={2} delay={3} color="#000000" shineColor="#9a9a9a" spread={55} direction="left" yoyo={false} pauseOnHover={false} disabled={false} />
               </motion.h1>
             </div>
 

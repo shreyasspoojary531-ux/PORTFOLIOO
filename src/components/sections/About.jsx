@@ -5,6 +5,7 @@ import Container from '../layout/Container';
 import Section from '../layout/Section';
 import FadeIn from '../animations/FadeIn';
 import LineReveal from '../animations/LineReveal';
+import ShinyText from '../ui/ShinyText';
 
 function ScrollHighlightedParagraph({ text }) {
   const containerRef = useRef(null);
@@ -50,7 +51,7 @@ export default function About() {
                 01 / Philosophy & Mindset
               </span>
               <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] mb-5 sm:mb-6">
-                Architectural thinking applied to product craft.
+                <ShinyText text="Architectural thinking applied to product craft." speed={2} delay={3} color="#000000" shineColor="#9a9a9a" spread={55} direction="left" yoyo={false} pauseOnHover={false} disabled={false} />
               </h2>
               <div className="w-12 h-[1px] bg-black/20" />
             </FadeIn>

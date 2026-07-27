@@ -3,6 +3,7 @@ import { LIFE_FRAMES } from '../../lib/constants';
 import Container from '../layout/Container';
 import Section from '../layout/Section';
 import FadeIn from '../animations/FadeIn';
+import ShinyText from '../ui/ShinyText';
 
 export default function LifeInFrames() {
   return (
@@ -15,7 +16,7 @@ export default function LifeInFrames() {
               05 / Visual Narrative
             </span>
             <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl tracking-tight">
-              Life in Frames
+              <ShinyText text="Life in Frames" speed={2} delay={3} color="#000000" shineColor="#9a9a9a" spread={55} direction="left" yoyo={false} pauseOnHover={false} disabled={false} />
             </h2>
           </div>
           <p className="text-[10px] sm:text-xs font-mono-tech uppercase tracking-widest text-black/40">
