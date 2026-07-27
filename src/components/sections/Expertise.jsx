@@ -1,172 +1,219 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ease } from '../../lib/animations';
 import { EXPERTISE_NODES } from '../../lib/constants';
 import Container from '../layout/Container';
-import Section from '../layout/Section';
-import FadeIn from '../animations/FadeIn';
 import ShinyText from '../ui/ShinyText';
+import OptionWheel from '../ui/OptionWheel';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Expertise() {
-  const [activeNodeId, setActiveNodeId] = useState(null);
-  const shouldReduceMotion = useReducedMotion();
-
-  const centerNode = EXPERTISE_NODES.find((n) => n.isCenter);
   const satelliteNodes = EXPERTISE_NODES.filter((n) => !n.isCenter);
-  const activeNode = EXPERTISE_NODES.find((n) => n.id === activeNodeId);
+  const items = satelliteNodes.map((n) => n.label);
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  const triggerRef = useRef(null);
+  const pinRef = useRef(null);
+  const wheelRef = useRef(null);
+  const activeIndexRef = useRef(0);
+
+  const activeNode = satelliteNodes[activeIndex] || satelliteNodes[0];
+
+  useEffect(() => {
+    activeIndexRef.current = activeIndex;
+  }, [activeIndex]);
+
+  useEffect(() => {
+    if (!triggerRef.current || !pinRef.current) return;
+
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: triggerRef.current,
+        pin: pinRef.current,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.5,
+        snap: {
+          snapTo: (value) => Math.round(value * (satelliteNodes.length - 1)) / (satelliteNodes.length - 1),
+          duration: { min: 0.1, max: 0.3 },
+          delay: 0.05,
+          ease: 'power1.inOut',
+        },
+        onUpdate: (self) => {
+          const progress = self.progress;
+          const targetVal = progress * (satelliteNodes.length - 1);
+          wheelRef.current?.setTarget(targetVal, false);
+
+          const nearestIdx = Math.min(
+            Math.max(Math.round(targetVal), 0),
+            satelliteNodes.length - 1
+          );
+
+          if (nearestIdx !== activeIndexRef.current) {
+            activeIndexRef.current = nearestIdx;
+            setActiveIndex(nearestIdx);
+          }
+        },
+      });
+    }, triggerRef);
+
+    return () => ctx.revert();
+  }, [satelliteNodes.length]);
 
   return (
-    <Section id="expertise" className="bg-white/80 text-black border-t border-black/10 overflow-hidden">
-      <Container>
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 pb-8 border-b border-black/10 gap-6">
-          <div>
-            <span className="text-xs uppercase tracking-[0.25em] font-mono-tech text-black/50 block mb-3">
-              04 / Systems & Architecture
-            </span>
-            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl tracking-tight">
-              <ShinyText text="Interactive System Blueprint" speed={2} delay={3} color="#000000" shineColor="#9a9a9a" spread={55} direction="left" yoyo={false} pauseOnHover={false} disabled={false} />
-            </h2>
-          </div>
-          <p className="text-xs font-mono-tech uppercase tracking-widest text-black/40">
-            [ Hover satellite nodes to inspect branch specifications ]
-          </p>
-        </div>
-
-        {/* Desktop Interactive Canvas */}
-        <div className="hidden lg:grid grid-cols-12 gap-8 items-center min-h-[640px] relative">
-          <div className="col-span-8 relative aspect-[4/3] bg-black/[0.02] border border-black/10 p-6 flex items-center justify-center">
-            <div className="absolute inset-0 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none" />
-
-            <svg className="w-full h-full relative z-10 overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-              {satelliteNodes.map((node) => {
-                const isHovered = activeNodeId === node.id;
-                const isOtherHovered = activeNodeId && activeNodeId !== node.id;
-                return (
-                  <g key={`line-${node.id}`}>
-                    <line
-                      x1={centerNode.x} y1={centerNode.y} x2={node.x} y2={node.y}
-                      stroke="#000000"
-                      strokeWidth={isHovered ? '0.8' : '0.4'}
-                      strokeOpacity={isHovered ? 1 : isOtherHovered ? 0.1 : 0.3}
-                      className={isHovered ? '' : 'animate-dash'}
-                      style={{ transition: 'all 0.4s ease' }}
-                    />
-                  </g>
-                );
-              })}
-
-              <g className="cursor-pointer" onClick={() => setActiveNodeId(null)}>
-                <circle cx={centerNode.x} cy={centerNode.y} r="3.5" fill="#000000" />
-                <circle cx={centerNode.x} cy={centerNode.y} r="6" fill="none" stroke="#000000" strokeWidth="0.3" strokeOpacity="0.4" />
-                <text x={centerNode.x} y={centerNode.y + 7.5} textAnchor="middle" className="font-mono-tech text-[3.2px] uppercase tracking-widest font-bold fill-black">
-                  {centerNode.label}
-                </text>
-              </g>
-
-              {satelliteNodes.map((node) => {
-                const isHovered = activeNodeId === node.id;
-                const isOtherHovered = activeNodeId && activeNodeId !== node.id;
-                return (
-                  <g key={`node-${node.id}`} className="cursor-pointer" onMouseEnter={() => setActiveNodeId(node.id)}>
-                    {isHovered && (
-                      <motion.circle cx={node.x} cy={node.y} r="5" fill="none" stroke="#000000" strokeWidth="0.5"
-                        initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1.5, opacity: 0.6 }}
-                        transition={{ duration: 0.8, repeat: Infinity, ease: 'easeOut' }}
-                      />
-                    )}
-                    <circle
-                      cx={node.x} cy={node.y}
-                      r={isHovered ? '2.8' : '2'}
-                      fill={isHovered ? '#000000' : '#ffffff'}
-                      stroke="#000000" strokeWidth="0.5"
-                      opacity={isOtherHovered ? 0.2 : 1}
-                      style={{ transition: 'all 0.3s ease' }}
-                    />
-                    <text x={node.x} y={node.y > 50 ? node.y + 6 : node.y - 4} textAnchor="middle"
-                      className={`font-mono-tech text-[2.8px] uppercase tracking-wider ${
-                        isHovered ? 'font-bold fill-black text-[3.2px]' : isOtherHovered ? 'fill-black/20' : 'fill-black/70'
-                      }`}
-                      style={{ transition: 'all 0.3s ease' }}
-                    >
-                      {node.label}
-                    </text>
-                  </g>
-                );
-              })}
-            </svg>
+    <section id="expertise" ref={triggerRef} className="relative min-h-[300vh] bg-white text-black border-t border-black/10">
+      <div ref={pinRef} className="sticky top-0 h-screen flex flex-col justify-between py-10 lg:py-14 overflow-hidden">
+        <Container className="h-full flex flex-col justify-between max-w-[1500px]">
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between pb-5 border-b border-black/10 gap-4 shrink-0">
+            <div>
+              <span className="text-xs uppercase tracking-[0.25em] font-mono-tech text-black/50 block mb-2">
+                04 / Systems & Architecture
+              </span>
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl tracking-tight">
+                <ShinyText
+                  text="Interactive System Blueprint"
+                  speed={2}
+                  delay={3}
+                  color="#000000"
+                  shineColor="#9a9a9a"
+                  spread={55}
+                  direction="left"
+                  yoyo={false}
+                  pauseOnHover={false}
+                  disabled={false}
+                />
+              </h2>
+            </div>
+            <p className="text-xs font-mono-tech uppercase tracking-widest text-black/40">
+              [ Scroll page to advance system blueprint wheel ]
+            </p>
           </div>
 
-          <div className="col-span-4 h-full flex flex-col justify-center border-l border-black/10 pl-8 min-h-[500px]">
-            <AnimatePresence mode="wait">
-              {activeNode ? (
-                <motion.div key={activeNode.id} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.4, ease }} className="space-y-6">
-                  <div className="border-b border-black/10 pb-4">
-                    <span className="font-mono-tech text-xs uppercase tracking-widest text-black/40 block mb-1">
-                      Discipline Spec // 0{satelliteNodes.findIndex((n) => n.id === activeNode.id) + 1}
+          {/* Desktop Interactive Scrollytelling View */}
+          <div className="hidden lg:grid grid-cols-12 gap-8 lg:gap-12 items-center flex-1 my-auto py-4 min-h-0">
+            {/* Left side: OptionWheel animation container with Instrument Serif & larger text size */}
+            <div className="col-span-5 lg:col-span-5 h-[520px] relative flex items-center justify-center overflow-hidden">
+              <OptionWheel
+                ref={wheelRef}
+                items={items}
+                defaultSelected={0}
+                textColor="#888888"
+                activeColor="#000000"
+                side="left"
+                fontSize={3.0}
+                spacing={1.6}
+                curve={1.5}
+                tilt={6}
+                blur={1.5}
+                fade={0.25}
+                smoothing={180}
+                inset={20}
+                loop={false}
+                draggable
+                onChange={(idx) => {
+                  if (idx !== activeIndexRef.current) {
+                    activeIndexRef.current = idx;
+                    setActiveIndex(idx);
+                  }
+                }}
+              />
+            </div>
+
+            {/* Right side: Expanded Discipline Spec Detail Panel with Enhanced Character Spacing */}
+            <div className="col-span-7 lg:col-span-7 h-full flex flex-col justify-center border-l border-black/10 pl-8 lg:pl-12 py-4">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeNode.id}
+                  initial={{ opacity: 0, x: 25 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -25 }}
+                  transition={{ duration: 0.35, ease }}
+                  className="space-y-8 max-w-4xl"
+                >
+                  <div className="border-b border-black/10 pb-5">
+                    <span className="font-mono-tech text-xs sm:text-sm uppercase tracking-[0.25em] text-black/40 block mb-2 font-medium">
+                      Discipline Spec // 0{activeIndex + 1}
                     </span>
-                    <h3 className="font-display text-4xl tracking-tight">{activeNode.label}</h3>
+                    <h3 className="font-display text-5xl sm:text-6xl lg:text-7xl tracking-tight text-black font-normal">
+                      {activeNode.label}
+                    </h3>
                   </div>
-                  <p className="text-sm text-black/70 font-light leading-relaxed">{activeNode.description}</p>
-                  <div className="space-y-4 pt-2">
-                    <span className="font-mono-tech text-xs uppercase tracking-widest text-black/40 block">Core Stack & Methodologies</span>
-                    <div className="space-y-3">
+
+                  <p className="text-lg sm:text-xl lg:text-2xl text-black/85 font-light leading-relaxed">
+                    {activeNode.description}
+                  </p>
+
+                  <div className="space-y-6 pt-2">
+                    <span className="font-mono-tech text-xs sm:text-sm uppercase tracking-[0.25em] font-semibold text-black/50 block">
+                      Core Stack & Methodologies
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-7">
                       {activeNode.technologies.map((tech) => (
-                        <div key={tech.name} className="border-l-2 border-black pl-3 py-0.5">
-                          <h4 className="font-mono-tech text-xs font-semibold">{tech.name}</h4>
-                          <p className="text-xs text-black/60 font-light">{tech.detail}</p>
+                        <div key={tech.name} className="border-l-3 border-black pl-4 py-1.5 space-y-1.5">
+                          <h4 className="font-mono-tech text-lg sm:text-xl font-bold text-black tracking-wider">
+                            {tech.name}
+                          </h4>
+                          <p className="font-mono-tech text-sm sm:text-base text-black/80 font-normal leading-relaxed tracking-wide">
+                            {tech.detail}
+                          </p>
                         </div>
                       ))}
                     </div>
                   </div>
                 </motion.div>
-              ) : (
-                <motion.div key="empty" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                  className="space-y-4 text-black/40 py-12">
-                  <span className="font-mono-tech text-xs uppercase tracking-widest block">Blueprint Inspection Active</span>
-                  <p className="font-editorial-italic text-xl text-black/60">
-                    Hover any satellite node in the blueprint canvas to examine branch specifications, technology stacks, and architectural philosophy.
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
+              </AnimatePresence>
+            </div>
           </div>
-        </div>
 
-        {/* Mobile Accordion */}
-        <div className="lg:hidden space-y-4">
-          {satelliteNodes.map((node) => {
-            const isOpen = activeNodeId === node.id;
-            return (
-              <div key={node.id} className="border border-black/15 overflow-hidden transition-colors">
-                <button onClick={() => setActiveNodeId(isOpen ? null : node.id)}
-                  className="w-full p-6 text-left flex items-center justify-between font-display text-2xl cursor-pointer">
-                  <span>{node.label}</span>
-                  <span className="font-mono-tech text-sm text-black/50">{isOpen ? '—' : '+'}</span>
-                </button>
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.4, ease }}
-                      className="px-6 pb-6 pt-2 border-t border-black/10 space-y-6">
-                      <p className="text-sm text-black/70 font-light leading-relaxed">{node.description}</p>
-                      <div className="space-y-3">
-                        <span className="font-mono-tech text-xs uppercase tracking-widest text-black/40 block">Stack Specifications</span>
-                        {node.technologies.map((tech) => (
-                          <div key={tech.name} className="border-l-2 border-black pl-3 py-1">
-                            <div className="font-mono-tech text-xs font-semibold">{tech.name}</div>
-                            <div className="text-xs text-black/60">{tech.detail}</div>
+          {/* Mobile Accordion View */}
+          <div className="lg:hidden space-y-4 my-auto py-6 overflow-y-auto max-h-[60vh]">
+            {satelliteNodes.map((node, index) => {
+              const isOpen = activeIndex === index;
+              return (
+                <div key={node.id} className="border border-black/15 overflow-hidden transition-colors">
+                  <button
+                    onClick={() => setActiveIndex(index)}
+                    className="w-full p-5 text-left flex items-center justify-between font-display text-2xl sm:text-3xl cursor-pointer"
+                  >
+                    <span>{node.label}</span>
+                    <span className="font-mono-tech text-sm text-black/50">{isOpen ? '—' : '+'}</span>
+                  </button>
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease }}
+                        className="px-5 pb-6 pt-2 border-t border-black/10 space-y-6"
+                      >
+                        <p className="text-base text-black/80 font-light leading-relaxed">{node.description}</p>
+                        <div className="space-y-4">
+                          <span className="font-mono-tech text-xs uppercase tracking-widest text-black/50 block font-semibold">
+                            Stack Specifications
+                          </span>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            {node.technologies.map((tech) => (
+                              <div key={tech.name} className="border-l-3 border-black pl-3.5 py-1 space-y-1">
+                                <div className="font-mono-tech text-lg font-bold text-black tracking-wider">{tech.name}</div>
+                                <div className="font-mono-tech text-sm text-black/80 font-normal tracking-wide">{tech.detail}</div>
+                              </div>
+                            ))}
                           </div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
-        </div>
-      </Container>
-    </Section>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </Container>
+      </div>
+    </section>
   );
 }
