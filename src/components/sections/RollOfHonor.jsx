@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import CircularGallery from '../ui/circular-gallery';
 import Container from '../layout/Container';
 import Section from '../layout/Section';
@@ -47,13 +48,14 @@ export default function RollOfHonor() {
             </h2>
           </div>
           <p className="text-xs font-mono-tech uppercase tracking-widest text-black/40">
-            [ Drag horizontally or use scroll wheel ]
+            <span className="hidden md:inline">[ Drag horizontally or use scroll wheel ]</span>
+            <span className="md:hidden">[ Auto-scrolling showcase ]</span>
           </p>
         </div>
       </Container>
 
-      {/* 3D WebGL Circular Gallery Canvas Container */}
-      <FadeIn className="w-full h-[65vh] min-h-[500px] max-h-[750px] relative overflow-hidden bg-black/[0.01]">
+      {/* Desktop View: 3D WebGL Circular Gallery Canvas (Aspect Ratio 3:4, No Text Below) */}
+      <FadeIn className="hidden md:block w-full h-[65vh] min-h-[500px] max-h-[750px] relative overflow-hidden bg-black/[0.01]">
         <CircularGallery
           items={honorItems}
           bend={2.5}
@@ -62,6 +64,33 @@ export default function RollOfHonor() {
           font="bold 22px Space Grotesk"
         />
       </FadeIn>
+
+      {/* Mobile View: Continuous Infinite Horizontal Auto-Scroll Marquee (3:4 Cards, No Text Below) */}
+      <div className="md:hidden w-full overflow-hidden py-4 border-t border-b border-black/10 bg-black/[0.02]">
+        <motion.div
+          className="flex gap-4 w-max px-4"
+          animate={{ x: ['0%', '-50%'] }}
+          transition={{
+            ease: 'linear',
+            duration: 25,
+            repeat: Infinity,
+          }}
+        >
+          {[...honorItems, ...honorItems].map((item, idx) => (
+            <div
+              key={`${item.image}-${idx}`}
+              className="shrink-0 w-[180px] sm:w-[220px] aspect-[3/4] relative rounded-lg overflow-hidden border border-black/15 shadow-sm bg-black/5"
+            >
+              <img
+                src={item.image}
+                alt=""
+                className="w-full h-full object-cover grayscale contrast-110"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </motion.div>
+      </div>
     </Section>
   );
 }

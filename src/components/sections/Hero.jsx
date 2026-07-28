@@ -4,12 +4,29 @@ import { ease } from '../../lib/animations';
 import { SITE } from '../../lib/constants';
 import Container from '../layout/Container';
 import ShinyText from '../ui/ShinyText';
+import SideRays from '../ui/SideRays';
 
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
     <section className="relative min-h-[100dvh] flex flex-col bg-white/80 text-black overflow-hidden select-none">
+      {/* Background SideRays visual effect */}
+      <div className="absolute inset-0 pointer-events-none z-0 opacity-80">
+        <SideRays
+          speed={1.5}
+          rayColor1="#60a5fa"
+          rayColor2="#96c8ff"
+          intensity={1.6}
+          spread={2}
+          origin="top-right"
+          tilt={0}
+          saturation={1.2}
+          blend={0.5}
+          falloff={1.6}
+          opacity={0.7}
+        />
+      </div>
 
       {/* ── MOBILE LAYOUT: content balanced vertically ── */}
       <div className="flex flex-col flex-1 justify-end pt-20 pb-16 px-5 space-y-6 md:hidden">

@@ -60,7 +60,15 @@ export default function Expertise() {
       });
     }, triggerRef);
 
-    return () => ctx.revert();
+    // Refresh ScrollTrigger after layout and Lenis settle
+    const refreshTimer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+
+    return () => {
+      clearTimeout(refreshTimer);
+      ctx.revert();
+    };
   }, [satelliteNodes.length]);
 
   return (
