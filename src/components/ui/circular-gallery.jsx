@@ -323,7 +323,7 @@ class Media {
     this.scale = this.screen.height / 1500;
     this.plane.scale.y =
       (this.viewport.height * (850 * this.scale)) / this.screen.height;
-    this.plane.scale.x = this.plane.scale.y * (3 / 4);
+    this.plane.scale.x = this.plane.scale.y * (4 / 3);
     this.plane.program.uniforms.uPlaneSizes.value = [
       this.plane.scale.x,
       this.plane.scale.y,

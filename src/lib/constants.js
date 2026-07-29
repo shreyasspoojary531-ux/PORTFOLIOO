@@ -9,9 +9,9 @@ export const SITE = {
 export const ABOUT = {
   headline: 'I bridge design intuition, full-stack engineering, and agentic AI systems to craft high-impact software.',
   paragraphs: [
-    'My name is Shreyas S Poojary, a Full Stack Developer, UI/UX Designer, and AI Specialist currently pursuing my 1st year BCA. My coding journey started in 10th grade with fundamental HTML & CSS, rapidly expanding into advanced JavaScript, React.js, Redux Toolkit, Next.js, Tailwind CSS, TypeScript, Python, C, Linux, and Google Cloud Platform.',
-    'I excel in advanced vibe coding leveraging cutting-edge LLMs—including Claude Code, OpenAI Codex, Google Antigravity, and open-source models across CLI and GUI workflows. By orchestrating MCP (Model Context Protocol) servers, agent skills, RAG architectures, and LangChain primitives, I rapidly transform architectural visions into production-grade systems.',
-    'For me, software craft is intentionality: eliminating unnecessary friction, maintaining geometric layout rigor, and building full-stack applications that perform with zero latency.',
+    'My name is Shreyas S Poojary, a Full Stack Developer & AI Specialist currently pursuing my 1st year BCA. My coding trajectory began on December 1, 2024 in Class 10 by learning HTML & CSS to build a complete Netflix UI clone. Driven by an intense passion for craft, I dedicated 7+ hours daily to coding during Class 12 vacations, mastering React.js and Tailwind CSS between March 31 and July 28.',
+    'In January 2026, I dove into Google Cloud Platform and Google Cloud Arcade, conquering cloud challenges and earning official Google Cloud badges and swag prizes. By February 1, 2026, I embraced AI Vibe Coding—mastering LLM agentic workflows within 4 months to architect group and startup software systems.',
+    'On April 8, I competed in PromptWars, ranking in the Top 400 among over 10,000 global prompt engineers. Since adopting Claude AI on June 12, I\'ve leveraged Model Context Protocol (MCP) and CLI agents across 10+ online hackathons, delivering high-impact, production-grade applications.',
   ],
 };
 
@@ -177,14 +177,70 @@ export const EXPERTISE_NODES = [
 ];
 
 export const LIFE_FRAMES = [
-  { id: 1, title: 'Architectural Clarity', caption: 'Designing systems where every element serves an undeniable purpose.', size: 'large' },
-  { id: 2, title: 'Micro-Interactions', caption: 'Focusing on the 100ms transitions that make software feel alive.', size: 'medium' },
-  { id: 3, title: 'Editorial Rigor', caption: 'Bringing typographic tradition into contemporary web products.', size: 'medium' },
-  { id: 4, title: 'Engineering Velocity', caption: 'Shipping clean code rapidly with advanced vibe coding workflows.', size: 'large' },
-  { id: 5, title: 'Continuous Iteration', caption: 'Refining and paring down until only what matters remains.', size: 'small' },
-  { id: 6, title: 'System Synthesis', caption: 'Where user experience, AI intelligence, and backend logic operate as one.', size: 'small' },
-  { id: 7, title: 'Quiet Craft', caption: 'Building software that works flawlessly without needing to boast.', size: 'medium' },
-  { id: 8, title: 'Future Primitives', caption: 'Exploring new interaction metaphors for spatial and AI agent interfaces.', size: 'small' },
+  {
+    id: 1,
+    title: 'Class 10 — Netflix Clone & HTML/CSS',
+    date: 'Dec 01, 2024',
+    caption: 'Started my coding journey in Class 10 by mastering HTML & CSS and building a full Netflix UI clone.',
+    image: '/assets/frame_netflix.jpg',
+    size: 'large',
+  },
+  {
+    id: 2,
+    title: 'Google Cloud & Arcade Swag',
+    date: 'Jan 2026',
+    caption: 'Conquered Google Cloud Arcade challenges, earning official Google Cloud Skills badges and GCloud swag.',
+    image: '/assets/frame_gcloud.jpg',
+    size: 'tall',
+  },
+  {
+    id: 3,
+    title: 'AI Vibe Coding & Startup Projects',
+    date: 'Feb 01, 2026',
+    caption: 'Mastered AI vibe coding within 4 months, scaling architectural systems for group and startup projects.',
+    image: '/assets/frame_vibe.jpg',
+    size: 'tall',
+  },
+  {
+    id: 4,
+    title: 'PromptWars — Top 400 Global Rank',
+    date: 'Apr 08, 2026',
+    caption: 'Secured Top 400 rank among 10,000+ competitors in PromptWars global AI prompt engineering challenge.',
+    image: '/assets/frame_promptwars.jpg',
+    size: 'large',
+  },
+  {
+    id: 5,
+    title: '7-Hour Daily Vacation Sprints',
+    date: 'Mar 20, 2026',
+    caption: 'Dedicated 7+ hours daily to coding during Class 12 vacations, building relentless engineering stamina.',
+    image: '/assets/frame_vacation.jpg',
+    size: 'small',
+  },
+  {
+    id: 6,
+    title: 'React & Tailwind CSS Mastery',
+    date: 'Mar 31 – Jul 28',
+    caption: 'Mastered modern React.js, Next.js, and Tailwind CSS v4 component architecture.',
+    image: '/assets/frame_react_tailwind.jpg',
+    size: 'small',
+  },
+  {
+    id: 7,
+    title: 'Claude AI & Agentic Workflows',
+    date: 'Jun 12, 2026',
+    caption: 'Integrated Claude AI CLI tools and MCP servers into daily autonomous engineering.',
+    image: '/assets/frame_claude.jpg',
+    size: 'tall',
+  },
+  {
+    id: 8,
+    title: '10+ Online Hackathons',
+    date: '2026',
+    caption: 'Competed in over 10 online hackathons, delivering full-stack prototypes under rapid deadlines.',
+    image: '/assets/frame_hackathons.jpg',
+    size: 'small',
+  },
 ];
 
 export const CONTACT = {

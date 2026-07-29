@@ -27,37 +27,46 @@ export default function LifeInFrames() {
 
       {/* ── MOBILE: Horizontal scroll carousel ── */}
       <div className="md:hidden">
-        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-6 pl-5 pr-5 scrollbar-hide"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-          {LIFE_FRAMES.map((item, idx) => (
+        <div
+          className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-6 pl-5 pr-5 scrollbar-hide"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {LIFE_FRAMES.map((item) => (
             <div
               key={item.id}
-              className="snap-center shrink-0 w-[72vw] h-[52vw] relative overflow-hidden border border-black/10 group cursor-pointer bg-black/5 flex flex-col justify-between p-5 transition-all duration-500 active:scale-[0.97]"
+              className="snap-center shrink-0 w-[82vw] h-[65vw] relative overflow-hidden border border-black/15 group cursor-pointer bg-white flex flex-col justify-between p-5 transition-all duration-500"
               style={{ touchAction: 'pan-x' }}
             >
-              {/* Dot pattern bg */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `radial-gradient(circle at ${(item.id * 30) % 100}% ${(item.id * 45) % 100}%, rgba(0,0,0,0.10) 1px, transparent 1px)`,
-                  backgroundSize: `${16 + (item.id % 3) * 8}px ${16 + (item.id % 3) * 8}px`,
-                }}
-              />
+              {/* Background Image if present */}
+              {item.image ? (
+                <div
+                  className="absolute inset-0 bg-cover bg-center grayscale contrast-110"
+                  style={{ backgroundImage: `url(${item.image})` }}
+                />
+              ) : (
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: `radial-gradient(circle at ${(item.id * 30) % 100}% ${(item.id * 45) % 100}%, rgba(0,0,0,0.12) 1px, transparent 1px)`,
+                    backgroundSize: `${16 + (item.id % 3) * 8}px ${16 + (item.id % 3) * 8}px`,
+                  }}
+                />
+              )}
+
+              {/* White gradient overlay from bottom */}
+              <div className="absolute inset-x-0 bottom-0 h-4/5 bg-gradient-to-t from-white via-white/85 to-transparent pointer-events-none" />
 
               {/* Index */}
-              <div className="relative z-10 font-mono-tech text-[9px] uppercase tracking-widest text-black/35">
+              <div className="relative z-10 font-mono-tech text-[10px] uppercase tracking-widest text-black/50">
                 FRAME // 0{item.id}
               </div>
 
-              {/* White gradient from bottom */}
-              <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
-
               {/* Text */}
               <div className="relative z-20 mt-auto">
-                <h3 className="font-display text-xl text-black mb-0.5 leading-tight">
+                <h3 className="font-display text-xl text-black mb-1 leading-tight font-normal">
                   {item.title}
                 </h3>
-                <p className="text-[11px] text-black/60 font-light leading-snug">
+                <p className="text-[11px] text-black/75 font-light leading-snug">
                   {item.caption}
                 </p>
               </div>
@@ -75,41 +84,50 @@ export default function LifeInFrames() {
         </div>
       </div>
 
-      {/* ── DESKTOP: Original bento grid ── */}
+      {/* ── DESKTOP: Authentic Bento Grid matching design reference ── */}
       <Container className="hidden md:block">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[240px]">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-[220px]">
           {LIFE_FRAMES.map((item, idx) => {
             const isLarge = item.size === 'large';
-            const isMedium = item.size === 'medium';
+            const isTall = item.size === 'tall';
 
             let gridSpanClass = 'col-span-1 row-span-1';
             if (isLarge) gridSpanClass = 'md:col-span-2 md:row-span-2';
-            else if (isMedium) gridSpanClass = 'md:col-span-2 md:row-span-1 lg:col-span-1 lg:row-span-2';
+            else if (isTall) gridSpanClass = 'md:col-span-1 md:row-span-2';
 
             return (
-              <FadeIn key={item.id} delay={idx * 0.06} className={gridSpanClass}>
-                <div className="relative w-full h-full overflow-hidden border border-black/10 group cursor-pointer bg-black/5 flex flex-col justify-between p-6 transition-all duration-500 md:hover:border-black/60">
-                  <div
-                    className="absolute inset-0 transition-transform duration-700 ease-out md:group-hover:scale-105"
-                    style={{
-                      backgroundImage: `radial-gradient(circle at ${(item.id * 30) % 100}% ${(item.id * 45) % 100}%, rgba(0,0,0,0.12) 1px, transparent 1px)`,
-                      backgroundSize: `${16 + (item.id % 3) * 8}px ${16 + (item.id % 3) * 8}px`,
-                    }}
-                  >
-                    <div className={`w-full h-full transition-all duration-500 md:group-hover:grayscale ${item.id % 2 === 0 ? 'bg-black/[0.03]' : 'bg-black/[0.06]'}`} />
-                  </div>
+              <FadeIn key={item.id} delay={idx * 0.05} className={gridSpanClass}>
+                <div className="relative w-full h-full overflow-hidden border border-black/15 group cursor-pointer bg-white flex flex-col justify-between p-6 transition-all duration-500 md:hover:border-black/70">
+                  {/* Dot matrix pattern or background image */}
+                  {item.image ? (
+                    <div
+                      className="absolute inset-0 bg-cover bg-center grayscale contrast-110 transition-transform duration-700 ease-out md:group-hover:scale-105"
+                      style={{ backgroundImage: `url(${item.image})` }}
+                    />
+                  ) : (
+                    <div
+                      className="absolute inset-0 transition-transform duration-700 ease-out md:group-hover:scale-105"
+                      style={{
+                        backgroundImage: `radial-gradient(circle at ${(item.id * 30) % 100}% ${(item.id * 45) % 100}%, rgba(0,0,0,0.12) 1px, transparent 1px)`,
+                        backgroundSize: `${16 + (item.id % 3) * 8}px ${16 + (item.id % 3) * 8}px`,
+                      }}
+                    />
+                  )}
 
-                  <div className="relative z-10 font-mono-tech text-[10px] uppercase tracking-widest text-black/40">
+                  {/* Editorial White Gradient Fade from Bottom */}
+                  <div className="absolute inset-x-0 bottom-0 h-4/5 bg-gradient-to-t from-white via-white/85 to-transparent opacity-95 md:group-hover:opacity-100 transition-opacity duration-500 ease-out pointer-events-none" />
+
+                  {/* Frame Index Header */}
+                  <div className="relative z-10 font-mono-tech text-[10px] uppercase tracking-widest text-black/50">
                     FRAME // 0{item.id}
                   </div>
 
-                  <div className="absolute inset-x-0 bottom-0 h-4/5 bg-gradient-to-t from-white via-white/80 to-transparent opacity-90 md:group-hover:opacity-100 transition-opacity duration-500 ease-out pointer-events-none" />
-
+                  {/* Title & Description */}
                   <div className="relative z-20 mt-auto pt-4 transform transition-all duration-500 ease-out">
-                    <h3 className="font-display text-2xl sm:text-3xl text-black mb-1 md:group-hover:underline underline-offset-4 decoration-1">
+                    <h3 className="font-display text-2xl sm:text-3xl text-black mb-1.5 font-normal md:group-hover:underline underline-offset-4 decoration-1">
                       {item.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-black/75 font-light leading-relaxed max-w-md opacity-80 md:group-hover:opacity-100 transition-opacity">
+                    <p className="text-xs sm:text-sm text-black/75 font-light leading-relaxed max-w-md">
                       {item.caption}
                     </p>
                   </div>

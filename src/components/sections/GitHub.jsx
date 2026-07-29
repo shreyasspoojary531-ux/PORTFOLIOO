@@ -61,7 +61,42 @@ export default function GitHub() {
           </a>
         </div>
 
-        {/* Pinned Repositories */}
+        {/* GitHub Profile Banner Card */}
+        <div className="mb-12 p-6 sm:p-8 border border-black/15 bg-white flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8 shadow-xs">
+          <div className="relative shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-black/20 shadow-md">
+            <img
+              src="/assets/github_avatar.png"
+              alt="SHREYAS GitHub Avatar"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="space-y-3 text-center sm:text-left flex-1">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h3 className="font-display text-2xl sm:text-3xl text-black font-semibold">SHREYAS</h3>
+                <p className="font-mono-tech text-xs text-black/50">shreyasspoojary531-ux</p>
+              </div>
+              <a
+                href={`https://github.com/${GITHUB.username}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono-tech text-xs uppercase tracking-widest text-black border border-black/20 px-4 py-2 hover:bg-black hover:text-white transition-colors self-center sm:self-auto"
+              >
+                View Profile ↗
+              </a>
+            </div>
+            <p className="font-editorial-italic text-sm sm:text-base text-black/80">
+              "AS LONG AS I'M ALIVE , THERE ARE INFINITE CHANCES"
+            </p>
+            <div className="flex items-center justify-center sm:justify-start gap-4 font-mono-tech text-[10px] sm:text-xs uppercase tracking-wider text-black/50 flex-wrap pt-1">
+              <span>📍 Mangalore</span>
+              <span>•</span>
+              <span>🏢 Aquavern Technologies</span>
+              <span>•</span>
+              <span>⚡ 123+ Contributions</span>
+            </div>
+          </div>
+        </div>
         <div className="mb-16">
           <h3 className="font-mono-tech text-xs uppercase tracking-widest text-black/50 mb-8">
             Featured Source Repositories

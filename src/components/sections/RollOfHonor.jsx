@@ -8,8 +8,8 @@ import ShinyText from '../ui/ShinyText';
 
 const honorItems = [
   {
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop',
-    text: 'Full Stack React & Next.js Architecture',
+    image: '/assets/cert_ai_fluency.png',
+    text: 'AI Fluency: Framework & Foundations — Anthropic',
   },
   {
     image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop',
@@ -65,7 +65,7 @@ export default function RollOfHonor() {
         />
       </FadeIn>
 
-      {/* Mobile View: Continuous Infinite Horizontal Auto-Scroll Marquee (3:4 Cards, No Text Below) */}
+      {/* Mobile View: Continuous Infinite Horizontal Auto-Scroll Marquee (4:3 Cards, No Text Below) */}
       <div className="md:hidden w-full overflow-hidden py-4 border-t border-b border-black/10 bg-black/[0.02]">
         <motion.div
           className="flex gap-4 w-max px-4"
@@ -79,7 +79,7 @@ export default function RollOfHonor() {
           {[...honorItems, ...honorItems].map((item, idx) => (
             <div
               key={`${item.image}-${idx}`}
-              className="shrink-0 w-[180px] sm:w-[220px] aspect-[3/4] relative rounded-lg overflow-hidden border border-black/15 shadow-sm bg-black/5"
+              className="shrink-0 w-[240px] sm:w-[280px] aspect-[4/3] relative rounded-lg overflow-hidden border border-black/15 shadow-sm bg-black/5"
             >
               <img
                 src={item.image}
