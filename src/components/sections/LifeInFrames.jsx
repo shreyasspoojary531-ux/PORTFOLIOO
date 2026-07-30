@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { LIFE_FRAMES } from '../../lib/constants';
 import Container from '../layout/Container';
 import Section from '../layout/Section';
@@ -20,28 +21,36 @@ export default function LifeInFrames() {
             </h2>
           </div>
           <p className="text-[10px] sm:text-xs font-mono-tech uppercase tracking-widest text-black/40">
-            [ Bento Gallery ]
+            <span className="hidden md:inline">[ Bento Gallery ]</span>
+            <span className="md:hidden">[ Auto-scrolling narrative ]</span>
           </p>
         </div>
       </Container>
 
-      {/* ── MOBILE: Horizontal scroll carousel ── */}
-      <div className="md:hidden">
-        <div
-          className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-6 pl-5 pr-5 scrollbar-hide"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      {/* ── MOBILE: Continuous Infinite Horizontal Auto-Scroll Marquee (Moving Opposite Direction: -50% -> 0%) ── */}
+      <div className="md:hidden w-full overflow-hidden py-4 border-t border-b border-black/10 bg-black/[0.02]">
+        <motion.div
+          className="flex gap-4 w-max px-4"
+          animate={{ x: ['-50%', '0%'] }}
+          transition={{
+            ease: 'linear',
+            duration: 25,
+            repeat: Infinity,
+          }}
         >
-          {LIFE_FRAMES.map((item) => (
+          {[...LIFE_FRAMES, ...LIFE_FRAMES].map((item, idx) => (
             <div
-              key={item.id}
-              className="snap-center shrink-0 w-[82vw] h-[65vw] relative overflow-hidden border border-black/15 group cursor-pointer bg-white flex flex-col justify-between p-5 transition-all duration-500"
-              style={{ touchAction: 'pan-x' }}
+              key={`${item.id}-${idx}`}
+              className="shrink-0 w-[240px] sm:w-[280px] h-[190px] relative overflow-hidden border border-black/15 bg-white flex flex-col justify-between p-4"
             >
-              {/* Background Image if present */}
+              {/* Background Image — native lazy <img> */}
               {item.image ? (
-                <div
-                  className="absolute inset-0 bg-cover bg-center grayscale contrast-110"
-                  style={{ backgroundImage: `url(${item.image})` }}
+                <img
+                  src={item.image}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 w-full h-full object-cover grayscale contrast-110"
                 />
               ) : (
                 <div
@@ -57,31 +66,22 @@ export default function LifeInFrames() {
               <div className="absolute inset-x-0 bottom-0 h-4/5 bg-gradient-to-t from-white via-white/85 to-transparent pointer-events-none" />
 
               {/* Index */}
-              <div className="relative z-10 font-mono-tech text-[10px] uppercase tracking-widest text-black/50">
+              <div className="relative z-10 font-mono-tech text-[9px] uppercase tracking-widest text-black/50 font-semibold">
                 FRAME // 0{item.id}
               </div>
 
               {/* Text */}
               <div className="relative z-20 mt-auto">
-                <h3 className="font-display text-xl text-black mb-1 leading-tight font-normal">
+                <h3 className="font-display text-lg text-black mb-0.5 leading-tight font-normal">
                   {item.title}
                 </h3>
-                <p className="text-[11px] text-black/75 font-light leading-snug">
+                <p className="text-[10px] text-black/75 font-light leading-snug">
                   {item.caption}
                 </p>
               </div>
             </div>
           ))}
-          {/* trailing space */}
-          <div className="shrink-0 w-1" />
-        </div>
-
-        {/* Scroll hint */}
-        <div className="px-5 mt-1">
-          <span className="font-mono-tech text-[9px] uppercase tracking-widest text-black/30">
-            ← swipe to explore →
-          </span>
-        </div>
+        </motion.div>
       </div>
 
       {/* ── DESKTOP: Authentic Bento Grid matching design reference ── */}
@@ -98,11 +98,15 @@ export default function LifeInFrames() {
             return (
               <FadeIn key={item.id} delay={idx * 0.05} className={gridSpanClass}>
                 <div className="relative w-full h-full overflow-hidden border border-black/15 group cursor-pointer bg-white flex flex-col justify-between p-6 transition-all duration-500 md:hover:border-black/70">
-                  {/* Dot matrix pattern or background image */}
+                  {/* Background Image — native lazy load via <img> for proper deferral */}
                   {item.image ? (
-                    <div
-                      className="absolute inset-0 bg-cover bg-center grayscale contrast-110 transition-transform duration-700 ease-out md:group-hover:scale-105"
-                      style={{ backgroundImage: `url(${item.image})` }}
+                    <img
+                      src={item.image}
+                      alt=""
+                      loading={idx < 2 ? 'eager' : 'lazy'}
+                      decoding="async"
+                      fetchpriority={idx < 2 ? 'high' : 'low'}
+                      className="absolute inset-0 w-full h-full object-cover grayscale contrast-110 transition-transform duration-700 ease-out md:group-hover:scale-105"
                     />
                   ) : (
                     <div
@@ -127,7 +131,7 @@ export default function LifeInFrames() {
                     <h3 className="font-display text-2xl sm:text-3xl text-black mb-1.5 font-normal md:group-hover:underline underline-offset-4 decoration-1">
                       {item.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-black/75 font-light leading-relaxed max-w-md">
+                    <p className="text-[11px] sm:text-xs text-black/75 font-light leading-relaxed max-w-md">
                       {item.caption}
                     </p>
                   </div>

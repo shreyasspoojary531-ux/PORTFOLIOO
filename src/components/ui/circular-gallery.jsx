@@ -214,16 +214,12 @@ class Media {
           );
           vec4 color = texture2D(tMap, uv);
 
-          // Convert texture to high-contrast monochrome
-          float gray = dot(color.rgb, vec3(0.299, 0.587, 0.114));
-          vec3 monoColor = vec3(gray);
-
           float d = roundedBoxSDF(vUv - 0.5, vec2(0.5 - uBorderRadius), uBorderRadius);
           if(d > 0.0) {
             discard;
           }
           
-          gl_FragColor = vec4(monoColor, 1.0);
+          gl_FragColor = vec4(color.rgb, 1.0);
         }
       `,
       uniforms: {

@@ -28,6 +28,8 @@ export default function Expertise() {
 
   useEffect(() => {
     if (!triggerRef.current || !pinRef.current) return;
+    // Only create GSAP ScrollTrigger pin on desktop screens (>= 1024px)
+    if (window.innerWidth < 1024) return;
 
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
@@ -72,8 +74,8 @@ export default function Expertise() {
   }, [satelliteNodes.length]);
 
   return (
-    <section id="expertise" ref={triggerRef} className="relative min-h-[300vh] bg-white text-black border-t border-black/10">
-      <div ref={pinRef} className="sticky top-0 h-screen flex flex-col justify-between py-10 lg:py-14 overflow-hidden">
+    <section id="expertise" ref={triggerRef} className="relative lg:min-h-[300vh] min-h-0 bg-white text-black border-t border-black/10">
+      <div ref={pinRef} className="lg:sticky lg:top-0 lg:h-screen flex flex-col justify-between py-6 lg:py-14 overflow-hidden">
         <Container className="h-full flex flex-col justify-between max-w-[1500px]">
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between pb-5 border-b border-black/10 gap-4 shrink-0">
@@ -83,7 +85,7 @@ export default function Expertise() {
               </span>
               <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl tracking-tight">
                 <ShinyText
-                  text="Interactive System Blueprint"
+                  text="Mastered Systems & Core Stack"
                   speed={2}
                   delay={3}
                   color="#000000"
@@ -177,14 +179,14 @@ export default function Expertise() {
             </div>
           </div>
 
-          {/* Mobile Accordion View */}
-          <div className="lg:hidden space-y-4 my-auto py-6 overflow-y-auto max-h-[60vh]">
+          {/* Mobile Accordion View (AI & Agents open by default, normal page scroll without inner scrollbars) */}
+          <div className="lg:hidden space-y-4 py-6 w-full">
             {satelliteNodes.map((node, index) => {
               const isOpen = activeIndex === index;
               return (
-                <div key={node.id} className="border border-black/15 overflow-hidden transition-colors">
+                <div key={node.id} className="border border-black/15 overflow-hidden transition-colors bg-white">
                   <button
-                    onClick={() => setActiveIndex(index)}
+                    onClick={() => setActiveIndex(isOpen ? null : index)}
                     className="w-full p-5 text-left flex items-center justify-between font-display text-2xl sm:text-3xl cursor-pointer"
                   >
                     <span>{node.label}</span>

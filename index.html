@@ -2,15 +2,86 @@
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shreyas — Product Engineer & Systems Architect</title>
-    <meta name="description" content="Award-quality digital portfolio of Shreyas, Product Engineer & Systems Architect." />
-    
-    <!-- Google Fonts: Instrument Serif + Inter + Space Grotesk -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- ── Primary SEO ──────────────────────────────────────────── -->
+    <title>Shreyas S Poojary — Product Engineer & Systems Architect</title>
+    <meta name="description" content="Portfolio of Shreyas S Poojary — Product Engineer, Systems Architect and AI Builder from Mangalore. Mastered React, Google Cloud, and AI-driven development." />
+    <meta name="keywords" content="Shreyas Poojary, Product Engineer, Systems Architect, React Developer, Google Cloud, AI, Vibe Coding, Mangalore, Aquavern Technologies, Portfolio" />
+    <meta name="author" content="Shreyas S Poojary" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://shreyas-poojary.vercel.app/" />
+
+    <!-- ── Favicon ───────────────────────────────────────────────── -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- ── Resource Hints ──────────────────────────────────────────── -->
+    <!-- Preload the background mesh so it's ready before first paint -->
+    <link rel="preload" as="image" href="/assets/bg-particle-mesh.jpg" fetchpriority="low" />
+    <!-- DNS-prefetch for Google Fonts CDN (sub-ms gain) -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+
+    <!-- ── Open Graph (LinkedIn, Facebook, WhatsApp previews) ───── -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://shreyas-poojary.vercel.app/" />
+    <meta property="og:title" content="Shreyas S Poojary — Product Engineer & Systems Architect" />
+    <meta property="og:description" content="Award-quality digital portfolio of Shreyas S Poojary — React, Google Cloud, AI-driven systems, and beyond." />
+    <meta property="og:image" content="https://shreyas-poojary.vercel.app/assets/github_avatar.png" />
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="400" />
+    <meta property="og:site_name" content="Shreyas S Poojary" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- ── Twitter / X Card ────────────────────────────────────── -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Shreyas S Poojary — Product Engineer & Systems Architect" />
+    <meta name="twitter:description" content="Award-quality digital portfolio of Shreyas S Poojary." />
+    <meta name="twitter:image" content="https://shreyas-poojary.vercel.app/assets/github_avatar.png" />
+
+    <!-- ── Preconnect for Google Fonts (reduces latency) ─────── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- ── Fonts: preload critical weight first, then full family ── -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500&display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ── Theme Color (browser chrome color on mobile) ────────── -->
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- ── Structured Data (JSON-LD for Google rich results) ──── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Shreyas S Poojary",
+      "url": "https://shreyas-poojary.vercel.app/",
+      "image": "https://shreyas-poojary.vercel.app/assets/github_avatar.png",
+      "jobTitle": "Product Engineer & Systems Architect",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Aquavern Technologies"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mangalore",
+        "addressCountry": "IN"
+      },
+      "sameAs": [
+        "https://github.com/shreyasspoojary531-ux"
+      ],
+      "knowsAbout": ["React", "Google Cloud", "AI Engineering", "Systems Architecture", "Tailwind CSS", "Node.js"]
+    }
+    </script>
   </head>
   <body class="bg-white text-black antialiased selection:bg-black selection:text-white">
     <div id="root"></div>

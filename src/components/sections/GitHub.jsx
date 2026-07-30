@@ -3,6 +3,7 @@ import { GITHUB } from '../../lib/constants';
 import Container from '../layout/Container';
 import Section from '../layout/Section';
 import FadeIn from '../animations/FadeIn';
+import LiquidMetalLink from '../ui/LiquidMetalLink';
 
 export default function GitHub() {
   const [tooltip, setTooltip] = useState(null);
@@ -51,14 +52,14 @@ export default function GitHub() {
               GitHub Repositories & Activity
             </h2>
           </div>
-          <a
+          <LiquidMetalLink
             href={`https://github.com/${GITHUB.username}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono-tech text-xs uppercase tracking-widest text-black md:hover:opacity-50 transition-opacity flex items-center gap-2"
+            className="font-mono-tech text-xs uppercase tracking-widest text-black px-4 py-2.5"
           >
-            github.com/{GITHUB.username} ↗
-          </a>
+            View More Projects ↗
+          </LiquidMetalLink>
         </div>
 
         {/* GitHub Profile Banner Card */}
@@ -68,6 +69,10 @@ export default function GitHub() {
               src="/assets/github_avatar.png"
               alt="SHREYAS GitHub Avatar"
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+              width="112"
+              height="112"
             />
           </div>
           <div className="space-y-3 text-center sm:text-left flex-1">

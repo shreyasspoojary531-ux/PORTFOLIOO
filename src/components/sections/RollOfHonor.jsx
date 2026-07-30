@@ -8,28 +8,24 @@ import ShinyText from '../ui/ShinyText';
 
 const honorItems = [
   {
-    image: '/assets/cert_ai_fluency.png',
+    image: '/assets/cert_anthropic_ai_fluency.jpg',
     text: 'AI Fluency: Framework & Foundations — Anthropic',
   },
   {
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop',
-    text: 'Generative AI & Agentic Systems',
+    image: '/assets/cert_msft_ai_concepts.jpg',
+    text: 'Introduction to AI Concepts — Microsoft Learn',
   },
   {
-    image: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?q=80&w=1000&auto=format&fit=crop',
-    text: 'Google Cloud & Linux Administration',
+    image: '/assets/cert_msft_ml_concepts.jpg',
+    text: 'Introduction to Machine Learning Concepts — Microsoft Learn',
   },
   {
-    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1000&auto=format&fit=crop',
-    text: 'Python & C Systems Fundamentals',
+    image: '/assets/cert_msft_ai_basics.jpg',
+    text: 'Explore AI Basics — Microsoft Learn',
   },
   {
-    image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1000&auto=format&fit=crop',
-    text: 'Vibe Coding & MCP Context Engineering',
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop',
-    text: 'Real-time Telemetry & Live Spatial Systems',
+    image: '/assets/cert_msft_generative_ai.jpg',
+    text: 'Explore Generative AI — Microsoft Learn',
   },
 ];
 
@@ -84,8 +80,11 @@ export default function RollOfHonor() {
               <img
                 src={item.image}
                 alt=""
-                className="w-full h-full object-cover grayscale contrast-110"
+                className="w-full h-full object-contain p-1 bg-white"
                 loading="lazy"
+                decoding="async"
+                width="280"
+                height="210"
               />
             </div>
           ))}

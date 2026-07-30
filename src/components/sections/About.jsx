@@ -75,8 +75,8 @@ export default function About() {
               ))}
             </div>
 
-            {/* Core Principles Cards */}
-            <div className="pt-12 grid grid-cols-1 sm:grid-cols-3 gap-8 border-t border-black/10">
+            {/* Core Principles Cards (Displayed exclusively on Desktop/Laptop screens) */}
+            <div className="hidden md:grid pt-12 grid-cols-1 sm:grid-cols-3 gap-8 border-t border-black/10">
               <FadeIn delay={0.3}>
                 <div className="p-6 border border-black/10 md:hover:border-black transition-colors duration-300 space-y-3 group">
                   <span className="font-mono-tech text-xs uppercase tracking-wider text-black/40 block md:group-hover:text-black">
