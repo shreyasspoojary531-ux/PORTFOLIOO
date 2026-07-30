@@ -15,6 +15,7 @@ export default function Expertise() {
   const items = satelliteNodes.map((n) => n.label);
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [mobileOpenIndex, setMobileOpenIndex] = useState(null);
   const triggerRef = useRef(null);
   const pinRef = useRef(null);
   const wheelRef = useRef(null);
@@ -85,7 +86,7 @@ export default function Expertise() {
               </span>
               <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl tracking-tight">
                 <ShinyText
-                  text="Mastered Systems & Core Stack"
+                  text="My Skills & Expertise"
                   speed={2}
                   delay={3}
                   color="#000000"
@@ -179,14 +180,14 @@ export default function Expertise() {
             </div>
           </div>
 
-          {/* Mobile Accordion View (AI & Agents open by default, normal page scroll without inner scrollbars) */}
+          {/* Mobile Accordion View (Cards minimized by default) */}
           <div className="lg:hidden space-y-4 py-6 w-full">
             {satelliteNodes.map((node, index) => {
-              const isOpen = activeIndex === index;
+              const isOpen = mobileOpenIndex === index;
               return (
                 <div key={node.id} className="border border-black/15 overflow-hidden transition-colors bg-white">
                   <button
-                    onClick={() => setActiveIndex(isOpen ? null : index)}
+                    onClick={() => setMobileOpenIndex(isOpen ? null : index)}
                     className="w-full p-5 text-left flex items-center justify-between font-display text-2xl sm:text-3xl cursor-pointer"
                   >
                     <span>{node.label}</span>

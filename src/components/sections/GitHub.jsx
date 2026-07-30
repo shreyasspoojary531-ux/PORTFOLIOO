@@ -1,44 +1,10 @@
-import React, { useMemo, useState } from 'react';
+import React from 'react';
 import { GITHUB } from '../../lib/constants';
 import Container from '../layout/Container';
 import Section from '../layout/Section';
 import FadeIn from '../animations/FadeIn';
-import LiquidMetalLink from '../ui/LiquidMetalLink';
 
 export default function GitHub() {
-  const [tooltip, setTooltip] = useState(null);
-
-  const contributionGrid = useMemo(() => {
-    const weeks = [];
-    const today = new Date();
-    for (let w = 47; w >= 0; w--) {
-      const days = [];
-      for (let d = 6; d >= 0; d--) {
-        const date = new Date(today);
-        date.setDate(date.getDate() - (w * 7 + d));
-        const rand = (w * 7 + d * 13) % 17;
-        let level = 0, count = 0;
-        if (rand > 13) { level = 4; count = rand + 8; }
-        else if (rand > 10) { level = 3; count = rand + 4; }
-        else if (rand > 7) { level = 2; count = rand; }
-        else if (rand > 4) { level = 1; count = 2; }
-        days.push({ level, count, dateStr: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) });
-      }
-      weeks.push(days);
-    }
-    return weeks;
-  }, []);
-
-  const levelColor = (level) => {
-    switch (level) {
-      case 4: return 'bg-black';
-      case 3: return 'bg-black/70';
-      case 2: return 'bg-black/40';
-      case 1: return 'bg-black/15';
-      default: return 'bg-black/5';
-    }
-  };
-
   return (
     <Section id="github" className="bg-white/80 text-black border-t border-black/10">
       <Container>
@@ -52,14 +18,14 @@ export default function GitHub() {
               GitHub Repositories & Activity
             </h2>
           </div>
-          <LiquidMetalLink
+          <a
             href={`https://github.com/${GITHUB.username}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono-tech text-xs uppercase tracking-widest text-black px-4 py-2.5"
+            className="font-mono-tech text-xs uppercase tracking-widest text-black border border-black/20 px-4 py-2.5 hover:bg-black hover:text-white transition-colors flex items-center gap-2"
           >
             View More Projects ↗
-          </LiquidMetalLink>
+          </a>
         </div>
 
         {/* GitHub Profile Banner Card */}
@@ -102,7 +68,9 @@ export default function GitHub() {
             </div>
           </div>
         </div>
-        <div className="mb-16">
+
+        {/* Featured Source Repositories (Displayed exclusively on Desktop/Laptop screens) */}
+        <div className="hidden md:block">
           <h3 className="font-mono-tech text-xs uppercase tracking-widest text-black/50 mb-8">
             Featured Source Repositories
           </h3>
@@ -140,47 +108,6 @@ export default function GitHub() {
                 </a>
               </FadeIn>
             ))}
-          </div>
-        </div>
-
-        {/* Contribution Velocity Matrix */}
-        <div className="p-8 border border-black/10 bg-black/[0.01] relative">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
-            <div className="flex items-center gap-3">
-              <h3 className="font-mono-tech text-xs uppercase tracking-widest text-black/50">
-                Contribution Activity Grid
-              </h3>
-              {tooltip && (
-                <span className="font-mono-tech text-xs text-white bg-black px-2 py-0.5 font-semibold">
-                  {tooltip.count} commits on {tooltip.dateStr}
-                </span>
-              )}
-            </div>
-            <div className="flex items-center gap-2 text-xs font-mono-tech text-black/50">
-              <span>Less</span>
-              <div className="flex gap-1 items-center">
-                {[5, 15, 40, 70, 100].map((o) => (
-                  <span key={o} className={`w-2.5 h-2.5 bg-black/${o} block`} />
-                ))}
-              </div>
-              <span>More</span>
-            </div>
-          </div>
-          <div className="overflow-x-auto pb-2">
-            <div className="flex gap-1.5 min-w-[700px]">
-              {contributionGrid.map((week, wIdx) => (
-                <div key={wIdx} className="flex flex-col gap-1.5 flex-1">
-                  {week.map((day, dIdx) => (
-                    <div
-                      key={dIdx}
-                      onMouseEnter={() => setTooltip(day)}
-                      onMouseLeave={() => setTooltip(null)}
-                      className={`w-full aspect-square ${levelColor(day.level)} transition-all md:hover:scale-125 cursor-pointer`}
-                    />
-                  ))}
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </Container>
