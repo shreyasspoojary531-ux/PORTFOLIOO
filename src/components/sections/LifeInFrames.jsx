@@ -20,10 +20,7 @@ export default function LifeInFrames() {
               <ShinyText text="Life in Frames" speed={2} delay={3} color="#000000" shineColor="#9a9a9a" spread={55} direction="left" yoyo={false} pauseOnHover={false} disabled={false} />
             </h2>
           </div>
-          <p className="text-[10px] sm:text-xs font-mono-tech uppercase tracking-widest text-black/40">
-            <span className="hidden md:inline">[ Bento Gallery ]</span>
-            <span className="md:hidden">[ Auto-scrolling narrative ]</span>
-          </p>
+          <p className="text-[10px] sm:text-xs font-mono-tech uppercase tracking-widest text-black/40">&nbsp;</p>
         </div>
       </Container>
 

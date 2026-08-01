@@ -44,13 +44,12 @@ export default function RollOfHonor() {
             </h2>
           </div>
           <p className="text-xs font-mono-tech uppercase tracking-widest text-black/40">
-            <span className="hidden md:inline">[ Drag horizontally or use scroll wheel ]</span>
-            <span className="md:hidden">[ Auto-scrolling showcase ]</span>
+            [ Drag horizontally or use scroll wheel ]
           </p>
         </div>
       </Container>
 
-      {/* Desktop View: 3D WebGL Circular Gallery Canvas (Aspect Ratio 3:4, No Text Below) */}
+      {/* Desktop View: 3D WebGL Circular Gallery */}
       <FadeIn className="hidden md:block w-full h-[65vh] min-h-[500px] max-h-[750px] relative overflow-hidden bg-black/[0.01]">
         <CircularGallery
           items={honorItems}
@@ -61,7 +60,7 @@ export default function RollOfHonor() {
         />
       </FadeIn>
 
-      {/* Mobile View: Continuous Infinite Horizontal Auto-Scroll Marquee (4:3 Cards, No Text Below) */}
+      {/* Mobile View: Continuous Infinite Horizontal Auto-Scroll Marquee */}
       <div className="md:hidden w-full overflow-hidden py-4 border-t border-b border-black/10 bg-black/[0.02]">
         <motion.div
           className="flex gap-4 w-max px-4"
