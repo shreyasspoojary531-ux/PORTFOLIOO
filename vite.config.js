@@ -15,34 +15,43 @@ export default defineConfig({
     // Emit source maps for Vercel error tracking (hidden from users)
     sourcemap: false,
     // Chunk strategy: split vendor libs from app code for better cache hits
-    rollupOptions: {
+    // Uses Rolldown's native codeSplitting API (Vite 8+)
+    rolldownOptions: {
       output: {
         // Hashed filenames for immutable caching
         entryFileNames: 'assets/[name]-[hash].js',
         chunkFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]',
-        manualChunks(id) {
-          // Core React runtime — rarely changes, maximise cache hit
-          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
-            return 'vendor-react';
-          }
-          // Animation libraries — isolated so React chunk stays lean
-          if (id.includes('node_modules/motion') || id.includes('node_modules/framer-motion')) {
-            return 'vendor-motion';
-          }
-          if (id.includes('node_modules/gsap')) {
-            return 'vendor-gsap';
-          }
-          // WebGL/3D — largest libs, isolated for parallel network fetch
-          if (id.includes('node_modules/ogl')) {
-            return 'vendor-ogl';
-          }
-          if (id.includes('node_modules/lenis')) {
-            return 'vendor-lenis';
-          }
-          if (id.includes('node_modules/@paper-design')) {
-            return 'vendor-shaders';
-          }
+        codeSplitting: {
+          groups: [
+            // Core React runtime — rarely changes, maximise cache hit
+            {
+              test: /node_modules[\\/](?:react[\\/]|react-dom[\\/])/,
+              name: 'vendor-react',
+            },
+            // Animation libraries — isolated so React chunk stays lean
+            {
+              test: /node_modules[\\/](motion|framer-motion)/,
+              name: 'vendor-motion',
+            },
+            {
+              test: /node_modules[\\/]gsap/,
+              name: 'vendor-gsap',
+            },
+            // WebGL/3D — largest libs, isolated for parallel network fetch
+            {
+              test: /node_modules[\\/]ogl/,
+              name: 'vendor-ogl',
+            },
+            {
+              test: /node_modules[\\/]lenis/,
+              name: 'vendor-lenis',
+            },
+            {
+              test: /node_modules[\\/]@paper-design/,
+              name: 'vendor-shaders',
+            },
+          ],
         },
       },
     },
@@ -54,4 +63,3 @@ export default defineConfig({
     include: ['react', 'react-dom', 'motion', 'gsap', 'lenis', 'ogl'],
   },
 })
-
