@@ -34,16 +34,27 @@ export default function Projects() {
               <div key={project.id} className="group">
                 <FadeIn>
                   {index === 0 ? (
-                    /* Layout 1: Full-width Horizontal Showcase */
+                    /* Layout 1: Full-width Horizontal Showcase (Arise) */
                     <div className="space-y-8">
-                      <div className="relative overflow-hidden bg-black/[0.02] border border-black/10 aspect-[16/9] w-full md:group-hover:border-black transition-colors duration-500">
+                      {/* Tech Frame Container around Project Image */}
+                      <div className="relative overflow-hidden bg-black/95 border-2 border-black/80 shadow-md aspect-[16/9] w-full p-1.5 sm:p-2">
+                        {/* Tech Corner Crosshair Ticks */}
+                        <div className="absolute top-2 left-2 z-10 w-2.5 h-2.5 stroke-black/40 pointer-events-none">
+                          <div className="w-full h-px bg-white/60" />
+                          <div className="h-full w-px bg-white/60" />
+                        </div>
+                        <div className="absolute bottom-2 right-2 z-10 w-2.5 h-2.5 pointer-events-none">
+                          <div className="w-full h-px bg-white/60 absolute bottom-0 right-0" />
+                          <div className="h-full w-px bg-white/60 absolute bottom-0 right-0" />
+                        </div>
+
                         {project.image ? (
                           <img
                             src={project.image}
                             alt={project.title}
                             loading="lazy"
                             decoding="async"
-                            className="w-full h-full object-cover grayscale contrast-105 transition-all duration-700 ease-out md:group-hover:scale-105 md:group-hover:grayscale-0"
+                            className="w-full h-full object-contain bg-[#030712] rounded-xs"
                           />
                         ) : (
                           <>
@@ -117,14 +128,24 @@ export default function Projects() {
                     /* Layout 2: Split 60/40 Visual Left */
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                       <div className="lg:col-span-7">
-                        <div className="relative overflow-hidden bg-black/[0.02] border border-black/10 aspect-[4/3] w-full md:group-hover:border-black transition-colors duration-500">
+                        {/* Tech Frame Container */}
+                        <div className="relative overflow-hidden bg-black/95 border-2 border-black/80 shadow-md aspect-[4/3] w-full p-1.5 sm:p-2">
+                          <div className="absolute top-2 left-2 z-10 w-2.5 h-2.5 pointer-events-none">
+                            <div className="w-full h-px bg-white/60" />
+                            <div className="h-full w-px bg-white/60" />
+                          </div>
+                          <div className="absolute bottom-2 right-2 z-10 w-2.5 h-2.5 pointer-events-none">
+                            <div className="w-full h-px bg-white/60 absolute bottom-0 right-0" />
+                            <div className="h-full w-px bg-white/60 absolute bottom-0 right-0" />
+                          </div>
+
                           {project.image ? (
                             <img
                               src={project.image}
                               alt={project.title}
                               loading="lazy"
                               decoding="async"
-                              className="w-full h-full object-cover grayscale contrast-105 transition-all duration-700 ease-out md:group-hover:scale-105 md:group-hover:grayscale-0"
+                              className="w-full h-full object-cover rounded-xs"
                             />
                           ) : (
                             <>
@@ -235,14 +256,24 @@ export default function Projects() {
                       </div>
 
                       <div className="lg:col-span-7 order-1 lg:order-2">
-                        <div className="relative overflow-hidden bg-black/[0.02] border border-black/10 aspect-[16/9] w-full md:group-hover:border-black transition-colors duration-500">
+                        {/* Tech Frame Container */}
+                        <div className="relative overflow-hidden bg-black/95 border-2 border-black/80 shadow-md aspect-[16/9] w-full p-1.5 sm:p-2">
+                          <div className="absolute top-2 left-2 z-10 w-2.5 h-2.5 pointer-events-none">
+                            <div className="w-full h-px bg-white/60" />
+                            <div className="h-full w-px bg-white/60" />
+                          </div>
+                          <div className="absolute bottom-2 right-2 z-10 w-2.5 h-2.5 pointer-events-none">
+                            <div className="w-full h-px bg-white/60 absolute bottom-0 right-0" />
+                            <div className="h-full w-px bg-white/60 absolute bottom-0 right-0" />
+                          </div>
+
                           {project.image ? (
                             <img
                               src={project.image}
                               alt={project.title}
                               loading="lazy"
                               decoding="async"
-                              className="w-full h-full object-cover grayscale contrast-105 transition-all duration-700 ease-out md:group-hover:scale-105 md:group-hover:grayscale-0"
+                              className="w-full h-full object-cover rounded-xs"
                             />
                           ) : (
                             <>
