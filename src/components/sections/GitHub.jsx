@@ -64,7 +64,7 @@ export default function GitHub() {
               <span>•</span>
               <span>🏢 Aquavern Technologies</span>
               <span>•</span>
-              <span>⚡ 123+ Contributions</span>
+              <span>⚡ 154+ Contributions</span>
             </div>
           </div>
         </div>

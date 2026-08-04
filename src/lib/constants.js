@@ -25,7 +25,8 @@ export const PROJECTS = [
     description: 'A gamified solo-leveling tracking system empowering individuals to level up real-world skills through interactive quests and stat progressions.',
     tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase Auth', 'Supabase DB'],
     githubUrl: 'https://github.com/shreyasspoojary531-ux/ARISE.git',
-    liveUrl: '#',
+    liveUrl: 'https://arise-rh53epjpl-shreyasspoojary531-uxs-projects.vercel.app/',
+    image: '/assets/project_arise.png',
     aspectRatio: '16/9',
   },
   {
@@ -37,7 +38,8 @@ export const PROJECTS = [
     description: 'An emergency and operational chatbot for maritime ships at sea to request fuel, provisions, and critical supplies with automated dispatch routing.',
     tags: ['React.js', 'Tailwind CSS', 'Node.js', 'MongoDB Auth', 'MongoDB DB'],
     githubUrl: 'https://github.com/shreyasspoojary531-ux/CHATBOT-AQUAVERN.git',
-    liveUrl: '#',
+    liveUrl: 'https://chatbot-aquavern.vercel.app/',
+    image: '/assets/project_chatbot.png',
     aspectRatio: '4/3',
   },
   {
@@ -49,7 +51,8 @@ export const PROJECTS = [
     description: 'An intelligent crowd management system featuring live map updates, dynamic density tracking, and real-time telemetry for event safety.',
     tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Realtime WebSockets', 'Live Mapping'],
     githubUrl: 'https://github.com/shreyasspoojary531-ux/CROWDLINER.git',
-    liveUrl: '#',
+    liveUrl: 'https://crowdliner.vercel.app/',
+    image: '/assets/project_crowdliner.png',
     aspectRatio: '16/9',
   },
 ];
