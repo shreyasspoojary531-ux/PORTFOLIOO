@@ -37,21 +37,33 @@ export default function Projects() {
                     /* Layout 1: Full-width Horizontal Showcase */
                     <div className="space-y-8">
                       <div className="relative overflow-hidden bg-black/[0.02] border border-black/10 aspect-[16/9] w-full md:group-hover:border-black transition-colors duration-500">
-                        <div className="absolute inset-0 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px] opacity-10" />
-                        <div className="absolute top-6 left-6 font-mono-tech text-xs tracking-widest uppercase text-black/40">
-                          PROJECT // {project.id} — {project.category}
-                        </div>
-                        <div className="absolute top-6 right-6 font-mono-tech text-xs tracking-widest uppercase text-black/40">
-                          {project.year}
-                        </div>
-                        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center">
-                          <span className="font-editorial-italic text-4xl sm:text-6xl text-black">
-                            {project.title}
-                          </span>
-                          <span className="font-mono-tech text-xs uppercase tracking-widest text-black/50">
-                            {project.subtitle}
-                          </span>
-                        </div>
+                        {project.image ? (
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            loading="lazy"
+                            decoding="async"
+                            className="w-full h-full object-cover grayscale contrast-105 transition-all duration-700 ease-out md:group-hover:scale-105 md:group-hover:grayscale-0"
+                          />
+                        ) : (
+                          <>
+                            <div className="absolute inset-0 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px] opacity-10" />
+                            <div className="absolute top-6 left-6 font-mono-tech text-xs tracking-widest uppercase text-black/40">
+                              PROJECT // {project.id} — {project.category}
+                            </div>
+                            <div className="absolute top-6 right-6 font-mono-tech text-xs tracking-widest uppercase text-black/40">
+                              {project.year}
+                            </div>
+                            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center">
+                              <span className="font-editorial-italic text-4xl sm:text-6xl text-black">
+                                {project.title}
+                              </span>
+                              <span className="font-mono-tech text-xs uppercase tracking-widest text-black/50">
+                                {project.subtitle}
+                              </span>
+                            </div>
+                          </>
+                        )}
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start pt-2">
@@ -79,15 +91,9 @@ export default function Projects() {
                           {/* Action Buttons: View Live & View GitHub Repo */}
                           <div className="flex flex-wrap items-center gap-4 pt-2">
                             <a
-                              href={project.liveUrl !== '#' ? project.liveUrl : '#'}
-                              target={project.liveUrl !== '#' ? '_blank' : '_self'}
+                              href={project.liveUrl}
+                              target="_blank"
                               rel="noopener noreferrer"
-                              onClick={(e) => {
-                                if (project.liveUrl === '#') {
-                                  e.preventDefault();
-                                  alert(`Live link for ${project.title} will be updated soon.`);
-                                }
-                              }}
                               className="font-mono-tech text-xs uppercase tracking-widest px-5 py-2.5 bg-black text-white hover:bg-black/80 transition-all duration-300 flex items-center gap-2 cursor-pointer"
                             >
                               <span>View Live</span>
@@ -112,18 +118,30 @@ export default function Projects() {
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                       <div className="lg:col-span-7">
                         <div className="relative overflow-hidden bg-black/[0.02] border border-black/10 aspect-[4/3] w-full md:group-hover:border-black transition-colors duration-500">
-                          <div className="absolute inset-0 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:20px_20px] opacity-10" />
-                          <div className="absolute top-6 left-6 font-mono-tech text-xs tracking-widest uppercase text-black/40">
-                            PROJECT // {project.id}
-                          </div>
-                          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center">
-                            <span className="font-editorial-italic text-3xl sm:text-5xl text-black">
-                              {project.title}
-                            </span>
-                            <span className="font-mono-tech text-xs uppercase tracking-widest text-black/50">
-                              {project.subtitle}
-                            </span>
-                          </div>
+                          {project.image ? (
+                            <img
+                              src={project.image}
+                              alt={project.title}
+                              loading="lazy"
+                              decoding="async"
+                              className="w-full h-full object-cover grayscale contrast-105 transition-all duration-700 ease-out md:group-hover:scale-105 md:group-hover:grayscale-0"
+                            />
+                          ) : (
+                            <>
+                              <div className="absolute inset-0 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:20px_20px] opacity-10" />
+                              <div className="absolute top-6 left-6 font-mono-tech text-xs tracking-widest uppercase text-black/40">
+                                PROJECT // {project.id}
+                              </div>
+                              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center">
+                                <span className="font-editorial-italic text-3xl sm:text-5xl text-black">
+                                  {project.title}
+                                </span>
+                                <span className="font-mono-tech text-xs uppercase tracking-widest text-black/50">
+                                  {project.subtitle}
+                                </span>
+                              </div>
+                            </>
+                          )}
                         </div>
                       </div>
 
@@ -149,15 +167,9 @@ export default function Projects() {
                         {/* Action Buttons: View Live & View GitHub Repo */}
                         <div className="flex flex-wrap items-center gap-4 pt-4">
                           <a
-                            href={project.liveUrl !== '#' ? project.liveUrl : '#'}
-                            target={project.liveUrl !== '#' ? '_blank' : '_self'}
+                            href={project.liveUrl}
+                            target="_blank"
                             rel="noopener noreferrer"
-                            onClick={(e) => {
-                              if (project.liveUrl === '#') {
-                                e.preventDefault();
-                                alert(`Live link for ${project.title} will be updated soon.`);
-                              }
-                            }}
                             className="font-mono-tech text-xs uppercase tracking-widest px-5 py-2.5 bg-black text-white hover:bg-black/80 transition-all duration-300 flex items-center gap-2 cursor-pointer"
                           >
                             <span>View Live</span>
@@ -201,15 +213,9 @@ export default function Projects() {
                         {/* Action Buttons: View Live & View GitHub Repo */}
                         <div className="flex flex-wrap items-center gap-4 pt-4">
                           <a
-                            href={project.liveUrl !== '#' ? project.liveUrl : '#'}
-                            target={project.liveUrl !== '#' ? '_blank' : '_self'}
+                            href={project.liveUrl}
+                            target="_blank"
                             rel="noopener noreferrer"
-                            onClick={(e) => {
-                              if (project.liveUrl === '#') {
-                                e.preventDefault();
-                                alert(`Live link for ${project.title} will be updated soon.`);
-                              }
-                            }}
                             className="font-mono-tech text-xs uppercase tracking-widest px-5 py-2.5 bg-black text-white hover:bg-black/80 transition-all duration-300 flex items-center gap-2 cursor-pointer"
                           >
                             <span>View Live</span>
@@ -230,18 +236,30 @@ export default function Projects() {
 
                       <div className="lg:col-span-7 order-1 lg:order-2">
                         <div className="relative overflow-hidden bg-black/[0.02] border border-black/10 aspect-[16/9] w-full md:group-hover:border-black transition-colors duration-500">
-                          <div className="absolute inset-0 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:24px_24px] opacity-10" />
-                          <div className="absolute top-6 left-6 font-mono-tech text-xs tracking-widest uppercase text-black/40">
-                            PROJECT // {project.id}
-                          </div>
-                          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center">
-                            <span className="font-editorial-italic text-3xl sm:text-5xl text-black">
-                              {project.title}
-                            </span>
-                            <span className="font-mono-tech text-xs uppercase tracking-widest text-black/50">
-                              {project.subtitle}
-                            </span>
-                          </div>
+                          {project.image ? (
+                            <img
+                              src={project.image}
+                              alt={project.title}
+                              loading="lazy"
+                              decoding="async"
+                              className="w-full h-full object-cover grayscale contrast-105 transition-all duration-700 ease-out md:group-hover:scale-105 md:group-hover:grayscale-0"
+                            />
+                          ) : (
+                            <>
+                              <div className="absolute inset-0 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:24px_24px] opacity-10" />
+                              <div className="absolute top-6 left-6 font-mono-tech text-xs tracking-widest uppercase text-black/40">
+                                PROJECT // {project.id}
+                              </div>
+                              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center">
+                                <span className="font-editorial-italic text-3xl sm:text-5xl text-black">
+                                  {project.title}
+                                </span>
+                                <span className="font-mono-tech text-xs uppercase tracking-widest text-black/50">
+                                  {project.subtitle}
+                                </span>
+                              </div>
+                            </>
+                          )}
                         </div>
                       </div>
                     </div>
